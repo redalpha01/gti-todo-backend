@@ -19,7 +19,7 @@
 | -s        | Crée un seeder (Sera ici utilisé juste pour avoir quelques éléments par défaut)                                                                                                                                     |
 | -R        | Crée des classes de FormRequest pour le modèle (Store & Update) <br/>Toute validation du modèle est déplacée ici                                                                                                    |
 | --policy  | Controllerait les permissions d'accès au modèle.<br/>Ne sera pas utilisé pour ce projet  mais permettrait d'ajouter l'authorization dans le futur.                                                                  |
-| --phpunit | Créé une classe de test en PHPUnit.<br/>Note: avec mbiance, nous n'avions pas l'opportunité de faire des tests unitaires, mais - au moins pour ce test-ci - je veux implémenter l'approche "Fail early, Fail often" |
+| --phpunit | Crée une classe de test en PHPUnit.<br/>Note: avec mbiance, nous n'avions pas l'opportunité de faire des tests unitaires, mais - au moins pour ce test-ci - je veux implémenter l'approche "Fail early, Fail often" |
 
 ## Composer Packages
 - Ide-helper
