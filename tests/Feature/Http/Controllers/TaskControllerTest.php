@@ -16,16 +16,27 @@ class TaskControllerTest extends TestCase
 
     public function test_can_get_task_list(): void
     {
-        $task = Task::factory()->create();
+        $tasks = Task::factory()->create();
+
+        $response = $this->getJson(route("{$this->routePrefix}.index"));
+
+        $response->assertOk();
+
+        $response->assertJsonFragment([
+            $tasks->toArray(),
+        ]);
+    }
+
+    public function test_index_is_ordered_by_position(): void
+    {
+        Task::factory()->count(10)->create();
 
         $response = $this->getJson(route("{$this->routePrefix}.index"));
 
         $response->assertOk();
 
         $response->assertJson([
-            'data' => [
-                $task->toArray()
-            ]
+            'data' => Task::orderBy("position")->get()->toArray()
         ]);
     }
 
@@ -38,61 +49,63 @@ class TaskControllerTest extends TestCase
         $response->assertOk();
 
         $response->assertJson([
-            'data' => $task->toArray()
+            'data' => $task->toArray(),
         ]);
     }
 
-    public function test_can_store_task(): void {
-
+    public function test_can_store_task(): void
+    {
         $task = Task::factory()->make();
 
         $response = $this->postJson(
             route("{$this->routePrefix}.store"),
-            $task->toArray()
+            $task->toArray(),
         );
 
         $response->assertCreated();
 
         $response->assertJson([
-            'data' => ['description' => $task->description]
+            'data' => ['description' => $task->description],
         ]);
 
         $this->assertDatabaseHas(
             'tasks',
-            $task->toArray()
+            $task->toArray(),
         );
     }
 
-    public function test_can_update_task(): void {
+    public function test_can_update_task(): void
+    {
         $existingTask = Task::factory()->create();
         $newTask = Task::factory()->make();
 
         $response = $this->putJson(
             route("{$this->routePrefix}.update", $existingTask),
-            $newTask->toArray()
+            $newTask->toArray(),
         );
 
         $response->assertJson([
             'data' => [
-                'id' => $existingTask->id,
+                'id'          => $existingTask->id,
                 'description' => $newTask->description,
-            ]
+            ],
         ]);
     }
 
     /**
      * @return void
      */
-    public function test_can_delete_task(): void {
+    public function test_can_delete_task(): void
+    {
         $existingTask = Task::factory()->create();
 
         $this->deleteJson(
-            route($this->routePrefix . '.destroy', $existingTask)
+            route($this->routePrefix . '.destroy', $existingTask),
         )->assertNoContent();
 
         $this->assertDatabaseMissing(
             'tasks',
-            $existingTask->toArray()
+            $existingTask->toArray(),
         );
     }
 }

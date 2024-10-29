@@ -15,7 +15,7 @@ class TaskController extends Controller
      */
     public function index(): JsonResponse
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('position')->get();
 
         return response()->json([
             'data' => $tasks,
