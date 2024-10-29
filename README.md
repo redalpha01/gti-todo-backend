@@ -18,3 +18,15 @@
 | --policy  | Controllerait les permissions d'accès au modèle.<br/>Ne sera pas utilisé pour ce projet  mais permettrait d'ajouter l'authorization dans le futur.                                                                  |
 | --phpunit | Créé une classe de test en PHPUnit.<br/>Note: avec mbiance, nous n'avions pas l'opportunité de faire des tests unitaires, mais - au moins pour ce test-ci - je veux implémenter l'approche "Fail early, Fail often" |
 
+## Composer Packages
+- Ide-helper
+  - Facilite l'autocomplétion dans les IDE
+- 
+
+## Tasks structure
+- Champs par défaut
+  - Id : identifiant
+  - Timestamps : date/heure création et date/heure édition
+- Champs requis minimum
+  - Description (J'assume ici que VARCAR 255 est assez considéranmt que les todos seront sur une seule ligne)
+  - is_done (marqueur de complétion)
