@@ -7,6 +7,7 @@
     - On pourrait retirer la table vu qu'on n'en a pas besoin ici, mais le vrai fix est de switch à InnoDB comme engine.
 - Les normes REST étants généralement vague su le sujet des actions, j'ai décidé de traite le reordering des items comme "conséquence naturelle" d'un PUT ou PATCH sur l'entité plutôt que de créer  une route spécifique pour l'action. (Ce que J'ai aussi déjà fait sur d'autres projets dans le passé)
   - Je suivrais vos normes à ce sujet si j'ai le rôle.
+  - Après l'intégration du front, je penses maintenant qu'une route de /reorder aurait peut-être été pertinente pour retourner la liste de position modifié
 - J'ai créé le modèle Task pour représenter les points du TODO avec les options suivantes
 
 | Option    | Effet                                                                                                                                                                                                               |
