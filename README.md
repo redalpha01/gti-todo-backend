@@ -21,7 +21,8 @@
 ## Composer Packages
 - Ide-helper
   - Facilite l'autocomplétion dans les IDE
-- 
+- roave/security-advisories
+  - Protection contre failles connues de PHP
 
 ## Tasks structure
 - Champs par défaut
