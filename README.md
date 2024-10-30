@@ -5,11 +5,15 @@
 - L'installation par défaut de laravel avec MariaDB utilise MyIsam comme engine ce qui cause un problème de longueur de
   clés
     - On pourrait retirer la table vu qu'on n'en a pas besoin ici, mais le vrai fix est de switch à InnoDB comme engine.
-- Les normes REST étants généralement vague su le sujet des actions, j'ai décidé de traite le reordering des items comme "conséquence naturelle" d'un PUT ou PATCH sur l'entité plutôt que de créer  une route spécifique pour l'action. (Ce que J'ai aussi déjà fait sur d'autres projets dans le passé)
-  - Je suivrais vos normes à ce sujet si j'ai le rôle.
-  - Après l'intégration du front, je penses maintenant qu'une route de /reorder aurait peut-être été pertinente pour retourner la liste de position modifié
+- Les normes REST étants généralement vague su le sujet des actions, j'ai décidé de traite le reordering des items
+  comme "conséquence naturelle" d'un PUT ou PATCH sur l'entité plutôt que de créer une route spécifique pour l'action. (
+  Ce que J'ai aussi déjà fait sur d'autres projets dans le passé)
+    - Je suivrais vos normes à ce sujet si j'ai le rôle.
+    - Après l'intégration du front, je penses maintenant qu'une route de /reorder aurait peut-être été pertinente pour
+      retourner la liste de position modifié
 - J'ai créé le modèle Task pour représenter les points du TODO avec les options suivantes
-- Je note que je ne valide pas que la nouvelle position d'une note reste naturelle (quelqu'un pourrait faire un update avec une position beaucoup plus haute que la plus haute note)
+- Je note que je ne valide pas que la nouvelle position d'une note reste naturelle (quelqu'un pourrait faire un update
+  avec une position beaucoup plus haute que la plus haute note)
 
 | Option    | Effet                                                                                                                                                                                                               |
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -23,16 +27,18 @@
 | --phpunit | Crée une classe de test en PHPUnit.<br/>Note: avec mbiance, nous n'avions pas l'opportunité de faire des tests unitaires, mais - au moins pour ce test-ci - je veux implémenter l'approche "Fail early, Fail often" |
 
 ## Composer Packages
+
 - Ide-helper
-  - Facilite l'autocomplétion dans les IDE
+    - Facilite l'autocomplétion dans les IDE
 - roave/security-advisories
-  - Protection contre failles connues de PHP
+    - Protection contre failles connues de PHP
 
 ## Structure du modèle Tasks
+
 - Champs par défaut
-  - Id : identifiant
-  - Timestamps : date/heure création et date/heure édition
+    - Id : identifiant
+    - Timestamps : date/heure création et date/heure édition
 - Champs requis minimum
-  - Description (J'assume ici que VARCAR 255 est assez considéranmt que les todos seront sur une seule ligne)
-  - is_done (marqueur de complétion)
-  - position (pour pouvoir marquer l'ordre)
+    - Description (J'assume ici que VARCAR 255 est assez considéranmt que les todos seront sur une seule ligne)
+    - is_done (marqueur de complétion)
+    - position (pour pouvoir marquer l'ordre)
