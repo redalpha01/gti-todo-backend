@@ -9,6 +9,7 @@
   - Je suivrais vos normes à ce sujet si j'ai le rôle.
   - Après l'intégration du front, je penses maintenant qu'une route de /reorder aurait peut-être été pertinente pour retourner la liste de position modifié
 - J'ai créé le modèle Task pour représenter les points du TODO avec les options suivantes
+- Je note que je ne valide pas que la nouvelle position d'une note reste naturelle (quelqu'un pourrait faire un update avec une position beaucoup plus haute que la plus haute note)
 
 | Option    | Effet                                                                                                                                                                                                               |
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

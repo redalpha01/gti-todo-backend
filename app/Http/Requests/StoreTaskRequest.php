@@ -24,6 +24,7 @@ class StoreTaskRequest extends FormRequest
     {
         return [
             'description' => 'required',
+            'position'    => 'prohibited',
         ];
     }
 }
