@@ -45,7 +45,8 @@ class Task extends Model
         'position',
     ];
 
-    protected static function booted(): void {
+    protected static function booted(): void
+    {
         static::creating(static function (Task $task) {
             $task->position = Task::max('position') + 1;
         });
@@ -56,10 +57,10 @@ class Task extends Model
                 $newPosition = $task->getAttribute('position');
 
                 if ($oldPosition > $newPosition) {
-                   Task::where('position', '<', $oldPosition)
-                       ->where('position', '>=', $newPosition)
-                       ->where('id', '!=', $task->id)
-                       ->increment('position');
+                    Task::where('position', '<', $oldPosition)
+                        ->where('position', '>=', $newPosition)
+                        ->where('id', '!=', $task->id)
+                        ->increment('position');
                 } else {
                     Task::where('position', '>', $oldPosition)
                         ->where('position', '<=', $newPosition)
@@ -67,6 +68,11 @@ class Task extends Model
                         ->decrement('position');
                 }
             }
+        });
+
+        static::deleted(static function (Task $task) {
+            Task::where('position', '>', $task->getOriginal('position'))
+                ->decrement('position');
         });
     }
 }

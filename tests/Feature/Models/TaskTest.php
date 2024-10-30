@@ -79,4 +79,25 @@ class TaskTest extends TestCase
             }
         }
     }
+
+    public function test_list_positions_are_updated_when_a_task_is_deleted(): void
+    {
+        $tasks = Task::factory()->count(10)->create();
+
+        // Delete tasks relatively in the middle
+        $tasks[4]->delete();
+
+        // Get all tasks ordered by position
+        $tasks = Task::orderBy('position')->get();
+
+        // Check that all tasks are in sequential order
+        $previousTask = null;
+        foreach ($tasks as $task) {
+            if ($previousTask) {
+                $this->assertSame($previousTask->position+1, $task->position);
+            }
+
+            $previousTask = $task;
+        }
+    }
 }
